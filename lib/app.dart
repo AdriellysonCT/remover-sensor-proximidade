@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'providers/app_provider.dart';
-import 'providers/sensor_provider.dart';
-import 'providers/settings_provider.dart';
-import 'providers/stats_provider.dart';
 import 'screens/home_screen.dart';
 import 'screens/settings_screen.dart';
 import 'screens/sensor_test_screen.dart';

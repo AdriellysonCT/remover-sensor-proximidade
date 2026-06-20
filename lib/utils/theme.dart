@@ -15,7 +15,7 @@ class AppTheme {
       brightness: Brightness.dark,
       colorScheme: ColorScheme.dark(
         primary: primaryColor,
-        secondary: primaryColor.withOpacity(0.8),
+        secondary: primaryColor.withValues(alpha: 0.8),
         surface: const Color(0xFF1E1E1E),
         background: const Color(0xFF121212),
         error: errorColor,
@@ -46,16 +46,16 @@ class AppTheme {
         }),
         trackColor: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.selected)) {
-            return successColor.withOpacity(0.5);
+            return successColor.withValues(alpha: 0.5);
           }
-          return Colors.grey.withOpacity(0.5);
+          return Colors.grey.withValues(alpha: 0.5);
         }),
       ),
       sliderTheme: SliderThemeData(
         activeTrackColor: primaryColor,
-        inactiveTrackColor: primaryColor.withOpacity(0.3),
+        inactiveTrackColor: primaryColor.withValues(alpha: 0.3),
         thumbColor: primaryColor,
-        overlayColor: primaryColor.withOpacity(0.2),
+        overlayColor: primaryColor.withValues(alpha: 0.2),
         trackHeight: 4,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
@@ -82,7 +82,7 @@ class AppTheme {
       brightness: Brightness.light,
       colorScheme: ColorScheme.light(
         primary: primaryColor,
-        secondary: primaryColor.withOpacity(0.8),
+        secondary: primaryColor.withValues(alpha: 0.8),
         surface: Colors.white,
         background: Colors.grey[100]!,
         error: errorColor,

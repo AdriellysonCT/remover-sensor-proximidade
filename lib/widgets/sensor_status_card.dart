@@ -44,7 +44,7 @@ class SensorStatusCard extends StatelessWidget {
                 width: double.infinity,
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: Colors.grey.withOpacity(0.2),
+                  color: Colors.grey.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: const Text(
@@ -98,8 +98,8 @@ class SensorStatusCard extends StatelessWidget {
                           ),
                           decoration: BoxDecoration(
                             color: isNear
-                                ? AppTheme.warningColor.withOpacity(0.2)
-                                : AppTheme.successColor.withOpacity(0.2),
+                                ? AppTheme.warningColor.withValues(alpha: 0.2)
+                                : AppTheme.successColor.withValues(alpha: 0.2),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Text(

@@ -23,20 +23,20 @@ class AnimatedSensorIndicator extends StatelessWidget {
         gradient: RadialGradient(
           colors: isNear
               ? [
-                  AppTheme.warningColor.withOpacity(0.4),
-                  AppTheme.warningColor.withOpacity(0.1),
+                  AppTheme.warningColor.withValues(alpha: 0.4),
+                  AppTheme.warningColor.withValues(alpha: 0.1),
                 ]
               : [
-                  AppTheme.successColor.withOpacity(0.4),
-                  AppTheme.successColor.withOpacity(0.1),
+                  AppTheme.successColor.withValues(alpha: 0.4),
+                  AppTheme.successColor.withValues(alpha: 0.1),
                 ],
           stops: const [0.5, 1.0],
         ),
         boxShadow: [
           BoxShadow(
             color: isNear
-                ? AppTheme.warningColor.withOpacity(0.5)
-                : AppTheme.successColor.withOpacity(0.5),
+                ? AppTheme.warningColor.withValues(alpha: 0.5)
+                : AppTheme.successColor.withValues(alpha: 0.5),
             blurRadius: isNear ? 20 : 15,
             spreadRadius: isNear ? 5 : 3,
           ),

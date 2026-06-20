@@ -1,9 +1,7 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/sensor_provider.dart';
-import '../services/sensor_monitor_service.dart';
 import '../utils/theme.dart';
 
 /// Tela de teste do sensor de proximidade
@@ -82,7 +80,7 @@ class _SensorTestScreenState extends ConsumerState<SensorTestScreen> {
         title: const Text('Testar Sensor'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () => context.pop(),
+          onPressed: () => Navigator.pop(context),
         ),
       ),
       body: SingleChildScrollView(
@@ -92,7 +90,7 @@ class _SensorTestScreenState extends ConsumerState<SensorTestScreen> {
           children: [
             // Card informativo
             Card(
-              color: AppTheme.primaryColor.withOpacity(0.1),
+              color: AppTheme.primaryColor.withValues(alpha: 0.1),
               child: Padding(
                 padding: const EdgeInsets.all(16),
                 child: Row(
@@ -124,8 +122,8 @@ class _SensorTestScreenState extends ConsumerState<SensorTestScreen> {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: sensorState.isNear
-                      ? AppTheme.warningColor.withOpacity(0.2)
-                      : AppTheme.successColor.withOpacity(0.2),
+                      ? AppTheme.warningColor.withValues(alpha: 0.2)
+                      : AppTheme.successColor.withValues(alpha: 0.2),
                   border: Border.all(
                     color: sensorState.isNear
                         ? AppTheme.warningColor
@@ -137,7 +135,7 @@ class _SensorTestScreenState extends ConsumerState<SensorTestScreen> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(
-                      sensorState.isNear ? Icons.hand : Icons.pan_tool_outlined,
+                      sensorState.isNear ? Icons.touch_app : Icons.pan_tool_outlined,
                       size: 80,
                       color: sensorState.isNear
                           ? AppTheme.warningColor
@@ -220,7 +218,7 @@ class _SensorTestScreenState extends ConsumerState<SensorTestScreen> {
                                   horizontalInterval: 2,
                                   getDrawingHorizontalLine: (value) {
                                     return FlLine(
-                                      color: Colors.grey.withOpacity(0.3),
+                                      color: Colors.grey.withValues(alpha: 0.3),
                                       strokeWidth: 1,
                                     );
                                   },
@@ -244,7 +242,7 @@ class _SensorTestScreenState extends ConsumerState<SensorTestScreen> {
                                     dotData: FlDotData(show: false),
                                     belowBarData: BarAreaData(
                                       show: true,
-                                      color: AppTheme.primaryColor.withOpacity(0.1),
+                                      color: AppTheme.primaryColor.withValues(alpha: 0.1),
                                     ),
                                   ),
                                 ],

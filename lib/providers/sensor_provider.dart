@@ -5,6 +5,11 @@ import '../models/sensor_data.dart';
 import '../services/sensor_monitor_service.dart';
 import '../utils/constants.dart';
 
+/// Provider para SharedPreferences
+final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {
+  throw UnimplementedError('Deve ser inicializado no main.dart');
+});
+
 /// Provider para gerenciar o estado do sensor de proximidade
 class SensorState {
   final double distance;
@@ -49,11 +54,15 @@ class SensorState {
 }
 
 class SensorNotifier extends StateNotifier<SensorState> {
-  final SharedPreferences _prefs;
+  late SharedPreferences _prefs;
   StreamSubscription<SensorData>? _subscription;
-  double _sensitivity;
+  double _sensitivity = AppConstants.defaultSensitivity;
 
-  SensorNotifier(this._prefs) : super(SensorState.initial()) {
+  SensorNotifier() : super(SensorState.initial());
+
+  /// Inicializa o notifier com SharedPreferences
+  Future<void> initialize(SharedPreferences prefs) async {
+    _prefs = prefs;
     _sensitivity = _prefs.getDouble(AppConstants.keySensorSensitivity) 
         ?? AppConstants.defaultSensitivity;
     SensorMonitorService.setSensitivity(_sensitivity);
@@ -144,6 +153,5 @@ class SensorNotifier extends StateNotifier<SensorState> {
 }
 
 final sensorProvider = StateNotifierProvider<SensorNotifier, SensorState>((ref) {
-  final prefs = ref.watch(sharedPreferencesProvider);
-  return SensorNotifier(prefs);
+  return SensorNotifier();
 });
