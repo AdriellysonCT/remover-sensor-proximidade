@@ -1,0 +1,48 @@
+proximity_fix/
+├── android/
+│   ├── app/
+│   │   ├── src/
+│   │   │   └── main/
+│   │   │       ├── java/com/example/proximity_fix/
+│   │   │       │   └── MainActivity.java
+│   │   │       ├── res/
+│   │   │       │   ├── drawable/
+│   │   │       │   │   └── ic_notification.xml
+│   │   │       │   └── values/
+│   │   │       │       └── styles.xml
+│   │   │       ├── AndroidManifest.xml
+│   │   │       └── kotlin/
+│   │   ├── build.gradle
+│   │   └── proguard-rules.pro
+│   ├── gradle/
+│   │   └── wrapper/
+│   │       └── gradle-wrapper.properties
+│   ├── build.gradle
+│   ├── gradle.properties
+│   └── settings.gradle
+├── lib/
+│   ├── screens/
+│   │   ├── home_screen.dart
+│   │   ├── settings_screen.dart
+│   │   └── sensor_test_screen.dart
+│   ├── services/
+│   │   ├── proximity_service.dart
+│   │   └── notification_service.dart
+│   ├── providers/
+│   │   ├── app_provider.dart
+│   │   ├── sensor_provider.dart
+│   │   └── settings_provider.dart
+│   ├── widgets/
+│   │   ├── protection_toggle.dart
+│   │   ├── sensor_status_card.dart
+│   │   ├── stats_card.dart
+│   │   └── custom_slider.dart
+│   ├── utils/
+│   │   ├── constants.dart
+│   │   └── permissions_helper.dart
+│   └── main.dart
+├── test/
+│   └── widget_test.dart
+├── pubspec.yaml
+├── analysis_options.yaml
+└── README.md
