@@ -41,10 +41,14 @@ class SettingsState {
 }
 
 class SettingsNotifier extends StateNotifier<SettingsState> {
-  final SharedPreferences _prefs;
+  late SharedPreferences _prefs;
 
-  SettingsNotifier(this._prefs) : super(SettingsState.initial()) {
-    _loadSettings();
+  SettingsNotifier() : super(SettingsState.initial());
+
+  /// Inicializa o notifier com SharedPreferences
+  Future<void> initialize(SharedPreferences prefs) async {
+    _prefs = prefs;
+    await _loadSettings();
   }
 
   /// Carrega as configurações salvas
@@ -103,6 +107,5 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
 }
 
 final settingsProvider = StateNotifierProvider<SettingsNotifier, SettingsState>((ref) {
-  final prefs = ref.watch(sharedPreferencesProvider);
-  return SettingsNotifier(prefs);
+  return SettingsNotifier();
 });

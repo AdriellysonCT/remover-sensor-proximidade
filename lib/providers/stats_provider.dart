@@ -37,11 +37,15 @@ class StatsState {
 }
 
 class StatsNotifier extends StateNotifier<StatsState> {
-  final SharedPreferences _prefs;
-  DateTime? _lastNearState;
+  late SharedPreferences _prefs;
+  bool? _lastNearState;
 
-  StatsNotifier(this._prefs) : super(StatsState.initial()) {
-    _loadStats();
+  StatsNotifier() : super(StatsState.initial());
+
+  /// Inicializa o notifier com SharedPreferences
+  Future<void> initialize(SharedPreferences prefs) async {
+    _prefs = prefs;
+    await _loadStats();
   }
 
   /// Carrega estatísticas salvas
@@ -122,6 +126,5 @@ class StatsNotifier extends StateNotifier<StatsState> {
 }
 
 final statsProvider = StateNotifierProvider<StatsNotifier, StatsState>((ref) {
-  final prefs = ref.watch(sharedPreferencesProvider);
-  return StatsNotifier(prefs);
+  return StatsNotifier();
 });

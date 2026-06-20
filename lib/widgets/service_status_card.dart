@@ -21,8 +21,8 @@ class ServiceStatusCard extends StatelessWidget {
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 color: isRunning
-                    ? AppTheme.primaryColor.withOpacity(0.2)
-                    : Colors.grey.withOpacity(0.2),
+                    ? AppTheme.primaryColor.withValues(alpha: 0.2)
+                    : Colors.grey.withValues(alpha: 0.2),
                 shape: BoxShape.circle,
               ),
               child: Icon(
@@ -67,7 +67,7 @@ class ServiceStatusCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
-                  color: AppTheme.primaryColor.withOpacity(0.2),
+                  color: AppTheme.primaryColor.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Row(

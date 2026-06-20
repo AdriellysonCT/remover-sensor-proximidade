@@ -17,19 +17,13 @@ class ProximityForegroundService {
         channelImportance: NotificationChannelImportance.LOW,
         showWhen: true,
         priority: NotificationPriority.LOW,
-        iconData: const NotificationIconData(
-          resType: ResourceType.mipmap,
-          resPrefix: ResourcePrefix.ic,
-          name: 'launcher',
-        ),
       ),
       iosNotificationOptions: const IOSNotificationOptions(
         showNotification: false,
         playSound: false,
       ),
-      foregroundTaskOptions: const ForegroundTaskOptions(
+      foregroundTaskOptions: ForegroundTaskOptions(
         interval: 5000, // Atualiza a cada 5 segundos
-        isOnceEvent: false,
         autoRunOnBoot: true,
         allowWakeLock: true,
         allowWifiLock: true,
@@ -44,23 +38,18 @@ class ProximityForegroundService {
   }) async {
     try {
       // Define o conteúdo da notificação
-      FlutterForegroundTask.setNotificationData(
+      await FlutterForegroundTask.setNotificationData(
         title: title,
         content: content,
-        buttons: [
-          NotificationButton(
-            id: 'stop',
-            text: 'Parar',
-            eventType: EventType.STOP,
-          ),
-        ],
       );
 
       // Inicia o serviço
-      final result = await FlutterForegroundTask.startService();
+      await FlutterForegroundTask.startService(
+        notificationTitle: title,
+        notificationText: content,
+      );
       
-      // ServiceRequestResult.success indica que o serviço foi iniciado com sucesso
-      return result == ServiceRequestResult.success;
+      return true;
     } catch (e) {
       print('Erro ao iniciar serviço em foreground: $e');
       return false;
@@ -92,7 +81,7 @@ class ProximityForegroundService {
     required String content,
   }) async {
     try {
-      FlutterForegroundTask.setNotificationData(
+      await FlutterForegroundTask.setNotificationData(
         title: title,
         content: content,
       );

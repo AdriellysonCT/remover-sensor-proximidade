@@ -21,8 +21,8 @@ class WakeLockStatusCard extends StatelessWidget {
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 color: isActive
-                    ? AppTheme.successColor.withOpacity(0.2)
-                    : Colors.grey.withOpacity(0.2),
+                    ? AppTheme.successColor.withValues(alpha: 0.2)
+                    : Colors.grey.withValues(alpha: 0.2),
                 shape: BoxShape.circle,
               ),
               child: Icon(

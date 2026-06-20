@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:sensors_plus/sensors_plus.dart';
 import '../models/sensor_data.dart';
 
@@ -106,32 +107,6 @@ class SensorMonitorService {
   static Future<void> restartMonitoring({required double sensitivity}) async {
     await stopMonitoring();
     await startMonitoring(sensitivity: sensitivity);
-  }
-
-  /// Obtém uma leitura única do sensor
-  static Future<SensorData?> getSingleReading() async {
-    try {
-      // O sensors_plus não tem método para leitura única, então ouvimos por um curto período
-      final completer = Completer<SensorData?>();
-      final timeout = Timer(const Duration(milliseconds: 500), () {
-        if (!completer.isCompleted) {
-          completer.complete(null);
-        }
-      });
-
-      final subscription = proximityEventStream().first.then((event) {
-        timer?.cancel();
-        completer.complete(SensorData.fromRawValue(event.distance));
-      }).catchError((_) {
-        timer?.cancel();
-        completer.complete(null);
-      });
-
-      return await completer.future;
-    } catch (e) {
-      print('Erro ao obter leitura única do sensor: $e');
-      return null;
-    }
   }
 
   /// Limpa recursos

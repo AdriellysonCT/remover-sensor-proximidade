@@ -32,7 +32,7 @@ class CustomSliderThumbShape extends SliderComponentShape {
     
     // Desenha o círculo externo (overlay)
     final overlayPaint = Paint()
-      ..color = (sliderTheme.overlayColor ?? Colors.blue).withOpacity(0.2)
+      ..color = (sliderTheme.overlayColor ?? Colors.blue).withValues(alpha: 0.2)
       ..style = PaintingStyle.fill;
     canvas.drawCircle(center, enabledThumbRadius * 2, overlayPaint);
     
@@ -83,7 +83,7 @@ class CustomSensitivitySlider extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
-                color: AppTheme.primaryColor.withOpacity(0.2),
+                color: AppTheme.primaryColor.withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Text(
@@ -110,11 +110,11 @@ class CustomSensitivitySlider extends StatelessWidget {
             trackHeight: 6,
             thumbShape: const CustomSliderThumbShape(enabledThumbRadius: 12),
             activeTrackColor: AppTheme.primaryColor,
-            inactiveTrackColor: AppTheme.primaryColor.withOpacity(0.3),
+            inactiveTrackColor: AppTheme.primaryColor.withValues(alpha: 0.3),
             thumbColor: AppTheme.primaryColor,
-            overlayColor: AppTheme.primaryColor.withOpacity(0.2),
+            overlayColor: AppTheme.primaryColor.withValues(alpha: 0.2),
             activeTickMarkColor: Colors.white,
-            inactiveTickMarkColor: Colors.grey.withOpacity(0.5),
+            inactiveTickMarkColor: Colors.grey.withValues(alpha: 0.5),
           ),
           child: Slider(
             value: value,

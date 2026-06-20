@@ -45,7 +45,8 @@ class _ProtectionToggleState extends ConsumerState<ProtectionToggle>
     _controller.forward().then((_) => _controller.reverse());
     
     // Feedback tátil
-    if (await Vibration.hasVibrator() ?? false) {
+    final hasVibrator = await Vibration.hasVibrator();
+    if (hasVibrator == true) {
       Vibration.vibrate(duration: 50);
     }
 
@@ -74,20 +75,20 @@ class _ProtectionToggleState extends ConsumerState<ProtectionToggle>
                 gradient: RadialGradient(
                   colors: isEnabled
                       ? [
-                          AppTheme.successColor.withOpacity(0.3),
-                          AppTheme.successColor.withOpacity(0.1),
+                          AppTheme.successColor.withValues(alpha: 0.3),
+                          AppTheme.successColor.withValues(alpha: 0.1),
                         ]
                       : [
-                          AppTheme.errorColor.withOpacity(0.3),
-                          AppTheme.errorColor.withOpacity(0.1),
+                          AppTheme.errorColor.withValues(alpha: 0.3),
+                          AppTheme.errorColor.withValues(alpha: 0.1),
                         ],
                   stops: const [0.5, 1.0],
                 ),
                 boxShadow: [
                   BoxShadow(
                     color: isEnabled
-                        ? AppTheme.successColor.withOpacity(0.4)
-                        : AppTheme.errorColor.withOpacity(0.4),
+                        ? AppTheme.successColor.withValues(alpha: 0.4)
+                        : AppTheme.errorColor.withValues(alpha: 0.4),
                     blurRadius: isEnabled ? 30 : 20,
                     spreadRadius: isEnabled ? 10 : 5,
                   ),
@@ -122,8 +123,8 @@ class _ProtectionToggleState extends ConsumerState<ProtectionToggle>
                     style: TextStyle(
                       fontSize: 14,
                       color: isEnabled
-                          ? AppTheme.successColor.withOpacity(0.8)
-                          : AppTheme.errorColor.withOpacity(0.8),
+                          ? AppTheme.successColor.withValues(alpha: 0.8)
+                          : AppTheme.errorColor.withValues(alpha: 0.8),
                     ),
                   ),
                 ],
