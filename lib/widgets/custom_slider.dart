@@ -1,6 +1,56 @@
 import 'package:flutter/material.dart';
 import '../utils/theme.dart';
 
+/// Forma personalizada para o thumb do slider
+class CustomSliderThumbShape extends SliderComponentShape {
+  final double enabledThumbRadius;
+  
+  const CustomSliderThumbShape({this.enabledThumbRadius = 12});
+  
+  @override
+  Size getPreferredSize(bool isEnabled, bool isDiscrete) {
+    return Size.fromRadius(enabledThumbRadius);
+  }
+  
+  @override
+  void paint(
+    PaintingContext context,
+    Offset center, {
+    required Animation<double> activationAnimation,
+    required Animation<double> enableAnimation,
+    required bool isDiscrete,
+    required TextPainter labelPainter,
+    required RenderBox parentBox,
+    required SliderThemeData sliderTheme,
+    required TextDirection textDirection,
+    required double value,
+    required double textScaleFactor,
+    required Size sizeWithOverflow,
+  }) {
+    final canvas = context.canvas;
+    final color = sliderTheme.thumbColor ?? Colors.blue;
+    
+    // Desenha o círculo externo (overlay)
+    final overlayPaint = Paint()
+      ..color = (sliderTheme.overlayColor ?? Colors.blue).withOpacity(0.2)
+      ..style = PaintingStyle.fill;
+    canvas.drawCircle(center, enabledThumbRadius * 2, overlayPaint);
+    
+    // Desenha o thumb principal
+    final thumbPaint = Paint()
+      ..color = color
+      ..style = PaintingStyle.fill;
+    canvas.drawCircle(center, enabledThumbRadius, thumbPaint);
+    
+    // Desenha borda branca
+    final borderPaint = Paint()
+      ..color = Colors.white
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2;
+    canvas.drawCircle(center, enabledThumbRadius, borderPaint);
+  }
+}
+
 /// Widget de slider customizado para sensibilidade
 class CustomSensitivitySlider extends StatelessWidget {
   final double value;
@@ -58,13 +108,11 @@ class CustomSensitivitySlider extends StatelessWidget {
         SliderTheme(
           data: SliderTheme.of(context).copyWith(
             trackHeight: 6,
-            thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 12),
-            overlayShape: const RoundSliderOverlayShape(overlayRadius: 20),
+            thumbShape: const CustomSliderThumbShape(enabledThumbRadius: 12),
             activeTrackColor: AppTheme.primaryColor,
             inactiveTrackColor: AppTheme.primaryColor.withOpacity(0.3),
             thumbColor: AppTheme.primaryColor,
             overlayColor: AppTheme.primaryColor.withOpacity(0.2),
-            tickMarkShape: const RoundSliderTickMarkShape(),
             activeTickMarkColor: Colors.white,
             inactiveTickMarkColor: Colors.grey.withOpacity(0.5),
           ),

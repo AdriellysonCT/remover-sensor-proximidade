@@ -6,6 +6,7 @@ import '../services/proximity_service.dart';
 import '../utils/permissions_helper.dart';
 import '../widgets/custom_slider.dart';
 import '../utils/theme.dart';
+import '../utils/constants.dart';
 
 /// Tela de configurações do aplicativo
 class SettingsScreen extends ConsumerStatefulWidget {
@@ -242,7 +243,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
         content: Text(message),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => context.pop(),
             child: const Text('OK'),
           ),
         ],
