@@ -82,7 +82,7 @@ class _SensorTestScreenState extends ConsumerState<SensorTestScreen> {
         title: const Text('Testar Sensor'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => context.pop(),
         ),
       ),
       body: SingleChildScrollView(

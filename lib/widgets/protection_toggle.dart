@@ -22,7 +22,6 @@ class _ProtectionToggleState extends ConsumerState<ProtectionToggle>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
-  bool _isPressed = false;
 
   @override
   void initState() {
@@ -43,7 +42,6 @@ class _ProtectionToggleState extends ConsumerState<ProtectionToggle>
   }
 
   void _handleTap() async {
-    setState(() => _isPressed = true);
     _controller.forward().then((_) => _controller.reverse());
     
     // Feedback tátil
@@ -54,7 +52,6 @@ class _ProtectionToggleState extends ConsumerState<ProtectionToggle>
     // Chama o callback após pequena delay para animação
     Future.delayed(const Duration(milliseconds: 100), () {
       widget.onChanged(!widget.isEnabled);
-      setState(() => _isPressed = false);
     });
   }
 

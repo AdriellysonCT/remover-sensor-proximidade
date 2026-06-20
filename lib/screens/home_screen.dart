@@ -14,6 +14,8 @@ import '../widgets/wake_lock_status_card.dart';
 import '../widgets/service_status_card.dart';
 import '../widgets/stats_card.dart';
 import '../utils/theme.dart';
+import '../utils/constants.dart';
+import '../models/sensor_data.dart';
 
 /// Tela principal do aplicativo
 class HomeScreen extends ConsumerStatefulWidget {

@@ -13,7 +13,6 @@ import 'utils/theme.dart';
 
 /// Configuração de rotas do aplicativo
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
-final _shellNavigatorKey = GlobalKey<NavigatorState>();
 
 final goRouterProvider = Provider<GoRouter>((ref) {
   return GoRouter(

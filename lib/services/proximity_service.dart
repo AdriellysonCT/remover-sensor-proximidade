@@ -59,7 +59,8 @@ class ProximityForegroundService {
       // Inicia o serviço
       final result = await FlutterForegroundTask.startService();
       
-      return result;
+      // ServiceRequestResult.success indica que o serviço foi iniciado com sucesso
+      return result == ServiceRequestResult.success;
     } catch (e) {
       print('Erro ao iniciar serviço em foreground: $e');
       return false;
